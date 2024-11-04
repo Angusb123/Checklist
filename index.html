@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checklist</title>
+    <link rel="icon" type="image/x-icon" href="icon.png">
+    <!-- Carbon Design System CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/carbon-components/css/carbon-components.min.css">
+    <style>
+        body {
+            font-family: 'IBM Plex Sans', sans-serif;
+            margin: 20px;
+            padding: 0;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+
+        .column-container {
+            display: flex;
+            flex-direction: column;
+            width: fit-content;
+            width: 60%;
+        }
+
+        .heading{
+            margin-bottom: 20px;
+        }
+
+        #task-container {
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            margin-bottom: 20px;
+            width: 100%;
+            flex-grow: 1;
+            max-height: 40px;
+        }
+
+        #task-input {
+            flex: 1;
+            padding: 10px;
+            border-radius: 8px 0 0 8px;
+        }
+
+        #add-task-btn {
+            padding: 0px 20px;
+            border-radius: 0 8px 8px 0;
+            border: none;
+            max-height: 40px!important;
+            min-height: 40px!important;
+        }
+
+        #task-list {
+            list-style: none;
+            padding: 0;
+            flex-grow: 1;
+        }
+
+        .task {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #f4f4f4;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .task label {
+            flex: 1; /* Allow label to take available space */
+            margin: 0 10px; /* Space between checkbox and label */
+        }
+
+        .remove-btn {
+            color: #da1e28;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 0;
+            transition: all 0.33s ease;
+        }
+
+        .remove-btn:hover {
+            color: white;
+            background-color: #da1e28;
+        }
+
+        /* Custom checkbox styles */
+        .custom-checkbox {
+            width: 40px;
+            height: 40px;
+            border: 1px solid lightgray;
+            border-width: 0 1px 0 1px;
+            margin-right: 10px; /* Space between checkbox and label */
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: transparent; /* Initial background color */
+            cursor: pointer;
+            transition: all 0.33s ease;
+        }
+
+        .custom-checkbox:hover {
+            background-color: #000;
+        }
+
+        .custom-checkbox.checked {
+            background-color: #000; /* Background color when checked */
+        }
+
+        .custom-checkbox.checked::after {
+            color: rgb(255, 255, 255); /* Background color when checked */
+        }
+
+        @font-face {
+            font-family: 'outfit';
+            src:  url('outfit.ttf');
+        }
+
+        .custom-checkbox::after {
+            content: '✓'; /* Checkmark character */
+            font-family: outfit;
+            color: rgb(0, 0, 0); /* White checkmark */
+            font-size: 18px; /* Adjust size as necessary */
+            position: absolute;
+        }
+
+        .custom-checkbox:hover::after {
+            color: rgb(255, 255, 255);
+        }
+
+        .dragging {
+            opacity: 0.5; /* Dim the item being dragged */
+        }
+    </style>
+</head>
+<body>
+    <div class="column-container">
+        <h1 class="bx--type-expressive-heading-02 heading">Angus's Checklist</h1>
+
+        <div id="task-container" class="bx--form-item">
+            <input type="text" id="task-input" class="bx--text-input" placeholder="Enter a task">
+            <button id="add-task-btn" class="bx--btn bx--btn--primary">Add Task</button>
+        </div>
+    
+        <ul id="task-list" class="bx--list--unordered"></ul>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
